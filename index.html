@@ -5,475 +5,224 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Cadin Jared | The Inclusive Math Block</title>
 <meta name="author" content="Cadin Jared">
-<meta name="description" content="Cadin Jared's free UDL toolkit for K-5 math teachers: a 15 minute lesson audit, a barrier to strategy guide, and black and white printables.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@500;700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<meta name="description" content="Cadin Jared's UDL toolkit for elementary math teachers.">
 <style>
-/*
-VOICE: a teacher talking to teachers: warm, plain, practical, backed by research.
-IDEA: the math classroom's own tools: graph paper, a ruler, a pencil, a desk card.
-PICTURE: the black and white benchmark card itself, front and back, drawn large in the hero.
-COLOUR and TYPE: graph paper white, graphite ink, pencil yellow accent, ruler blue support; Lexend (built for readability) + Atkinson Hyperlegible.
-LAYOUT: hero band with title and card, then tool sections: audit, checklist, strategy guide, case study, printables, references.
-*/
-:root{color-scheme:light dark;
---bg:light-dark(#ffffff,#14171c);--paper:light-dark(#f6f8fb,#1b1f26);--ink:light-dark(#1f2329,#eef0f3);--soft:light-dark(#5b626d,#a9b0bb);
---line:light-dark(#dde3ea,#2c323c);--grid:light-dark(#e7edf4,#20252d);--yellow:#f6c12e;--yellowInk:#2a2000;--blue:light-dark(#2457a6,#8db4f0);--blueBg:light-dark(#e9f0fb,#1c2a40)}
-:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
-*{box-sizing:border-box;min-width:0}
-body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 "Atkinson Hyperlegible",system-ui,sans-serif;overflow-x:clip}
-h1,h2,h3{font-family:Lexend,system-ui,sans-serif;line-height:1.1;text-wrap:balance;margin:0 0 .5em}
-h1{font-size:clamp(34px,5vw,52px);font-weight:700}
-h2{font-size:clamp(26px,3.4vw,36px);font-weight:700}
-h3{font-size:20px;font-weight:700}
-p{margin:0 0 1em;max-width:68ch}
-a{color:var(--blue)}
-.band{padding:clamp(32px,5vw,72px) max(5vw,16px)}
-.wrap{max-width:1180px;margin:0 auto}
-.grid-bg{background-color:var(--paper);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px}
-nav.oldscroll{display:flex;gap:6px;overflow-x:auto;padding:10px max(5vw,16px);border-bottom:1px solid var(--line);background:var(--bg)}
-nav.oldscroll a{flex:none;text-decoration:none;color:var(--ink);font-size:15px;padding:8px 12px;border-radius:999px;border:1px solid var(--line)}
-nav.oldscroll a:hover,nav.oldscroll a:focus-visible{border-color:var(--ink)}
-@media(min-width:900px){nav.oldscroll{position:sticky;top:0;z-index:5}}
-html{scroll-padding-top:72px}
-.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(24px,4vw,56px);align-items:center}
-.byline{font-size:16px;color:var(--soft);margin-bottom:18px}
-.byline strong{color:var(--ink)}
-.lede{font-size:19px}
-.pill{display:inline-block;background:var(--yellow);color:var(--yellowInk);font-weight:700;font-size:14px;padding:4px 10px;border-radius:6px;margin-bottom:14px}
-.cardfig{position:relative}
-.cardfig svg{width:100%;height:auto;display:block}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:18px}
-.box{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:20px}
-.grid-bg .box{box-shadow:0 1px 0 var(--line)}
-.steps{list-style:none;padding:0;margin:0;display:grid;gap:14px;counter-reset:s}
-.steps li{display:grid;grid-template-columns:52px minmax(0,1fr);gap:14px;align-items:start;background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:18px}
-.steps li::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--yellow);color:var(--yellowInk);font:700 20px Lexend,sans-serif}
-.steps p{margin:0}
-.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:start}
-.check{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--bg)}
-.check h3{margin:0;padding:14px 18px;background:var(--blueBg);color:var(--blue);font-size:18px}
-.check label{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:10px;align-items:start;padding:12px 18px;border-top:1px solid var(--line);cursor:pointer}
-.check input{width:22px;height:22px;margin:2px 0 0;accent-color:var(--blue)}
-.cp{font-size:13px;color:var(--soft);white-space:nowrap;padding-top:3px}
-.score{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin:18px 0}
-.meter{flex:1 1 220px;height:14px;border-radius:999px;background:var(--line);overflow:hidden}
-.meter i{display:block;height:100%;width:0;background:var(--blue);transition:width .3s}
-.big{font:700 clamp(28px,4vw,40px) Lexend,sans-serif}
-button{font:inherit;font-weight:700;font-size:16px;min-height:44px;padding:0 16px;border-radius:10px;border:1px solid var(--ink);background:var(--bg);color:var(--ink);cursor:pointer}
-button.primary{background:var(--ink);color:var(--bg)}
-button:focus-visible,input:focus-visible,a:focus-visible,select:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
-table{width:100%;border-collapse:collapse;background:var(--bg);font-size:16px}
-th,td{text-align:left;vertical-align:top;padding:12px 14px;border-bottom:1px solid var(--line)}
-th{font-family:Lexend,sans-serif;font-size:15px;background:var(--blueBg);color:var(--blue)}
-td:first-child{font-weight:700}
-.tag{display:inline-block;font-size:13px;font-weight:700;padding:2px 8px;border-radius:6px;border:1px solid var(--line);white-space:nowrap;margin:2px 4px 2px 0}
-.filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
-.filters button[aria-pressed=true]{background:var(--ink);color:var(--bg)}
-.quote{border-left:6px solid var(--yellow);padding:4px 0 4px 18px;font-size:19px;margin:0 0 1em}
-.print{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:20px}
-.sheet{background:#fff;color:#111;border:2px dashed #999;border-radius:12px;padding:18px}
-.sheet h3{color:#111}
-.sheet ol{margin:0;padding-left:1.3em;font-size:18px}
-.sheet li{margin:.45em 0}
-pre{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px;overflow-x:auto;white-space:pre-wrap;font:15px/1.5 "Atkinson Hyperlegible",sans-serif;margin:0 0 12px}
-.refs a{overflow-wrap:anywhere}.refs p{padding-left:2em;text-indent:-2em;max-width:none;font-size:16px}
-.author{display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px;align-items:center}
-.mono{width:72px;height:72px;border-radius:50%;background:var(--yellow);color:var(--yellowInk);display:grid;place-items:center;font:700 26px Lexend,sans-serif}
-.small{font-size:15px;color:var(--soft)}
-footer{border-top:1px solid var(--line)}
-@media(max-width:860px){.hero,.two{grid-template-columns:minmax(0,1fr)}}
-@media(max-width:600px){table{font-size:14px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--line)}.stack td{display:flow-root;border:0;padding:4px 0;padding-inline-start:7.5em;text-align:start}.stack td::before{content:attr(data-l);float:inline-start;width:7em;margin-inline-start:-7.5em;font-weight:700;color:var(--soft);font-size:13px}.stack td:empty{display:none}.steps li{grid-template-columns:44px minmax(0,1fr)}}
-@media(prefers-reduced-motion:reduce){.meter i{transition:none}}
-@media print{nav,button,.filters,.noprint{display:none!important}.grid-bg{background:none}body{font-size:12pt}.band{padding:16px 0}.sheet{break-inside:avoid}}
-
-/* site chrome */
-.site-head{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}
-.head-in{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px max(5vw,16px)}
-.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
-.brand .mono{display:grid!important;place-items:center;width:44px;height:44px;font-size:17px;color:var(--yellowInk)}
-.brand b{display:block;font:700 19px Lexend,sans-serif;line-height:1.1}
-.brand span{display:block;font-size:13px;color:var(--soft)}
-.menu{display:flex;flex-wrap:wrap;gap:4px}
-.menu a{text-decoration:none;color:var(--ink);font-size:15px;font-weight:700;padding:10px 12px;border-radius:8px}
-.menu a:hover{background:var(--paper)}
-.menu a[aria-current=page]{background:var(--yellow);color:var(--yellowInk)}
-#menuBtn{display:none}
-@media(max-width:900px){#menuBtn{display:inline-flex;align-items:center}.menu{display:none;position:absolute;left:0;right:0;top:100%;background:var(--bg);border-bottom:1px solid var(--line);flex-direction:column;padding:8px max(5vw,16px) 16px}.menu.open{display:flex}}
+body{margin:0;background:#fff;color:#222;font-family:Verdana,Geneva,sans-serif;font-size:16px;line-height:1.6}
+.container{max-width:860px;margin:0 auto;padding:0 18px}
+header{border-bottom:3px solid #222;padding:22px 0 12px}
+header h1{font-family:Georgia,serif;font-size:32px;margin:0}
+header p{margin:2px 0 10px;color:#555}
+nav a{color:#1a4f8b;margin-right:14px;font-weight:bold;text-decoration:none;display:inline-block;padding:4px 0}
+nav a:hover,nav a.current{text-decoration:underline}
+h2{font-family:Georgia,serif;font-size:26px;margin:28px 0 10px}
+h3{font-size:18px;margin:22px 0 6px}
+a{color:#1a4f8b}
 .page{display:none}.page.on{display:block}
-.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
-.btn{display:inline-flex;align-items:center;min-height:46px;padding:0 20px;border-radius:10px;font-weight:700;text-decoration:none;border:2px solid var(--ink);color:var(--ink)}
-.btn.solid{background:var(--ink);color:var(--bg)}
-.feature{display:block;text-decoration:none;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:22px;transition:transform .15s}
-.feature:hover{transform:translateY(-2px);border-color:var(--ink)}
-.feature .ico{width:48px;height:48px;border-radius:12px;background:var(--yellow);display:grid;place-items:center;margin-bottom:12px}
-.post-meta{color:var(--soft);font-size:15px;margin-bottom:20px}
-.post{max-width:760px}
-.post h2{margin-top:1.2em}
-.page-title{padding-bottom:0}
-.site-foot{border-top:1px solid var(--line);background:var(--paper)}
-.foot-in{max-width:1180px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;padding:28px max(5vw,16px);font-size:15px;color:var(--soft)}
-.foot-in a{color:var(--ink)}
-@media(prefers-reduced-motion:reduce){.feature{transition:none}}
+.intro{overflow:hidden}
+.photo{float:right;width:210px;margin:6px 0 12px 20px;border:1px solid #ccc;padding:5px;background:#fff}
+.photo img{width:100%;display:block}
+.photo p{font-size:13px;color:#666;margin:4px 0 0;text-align:center}
+.box{border:1px solid #999;padding:12px 16px;margin:14px 0;background:#f7f7f7}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:15px}
+th,td{border:1px solid #999;padding:8px;text-align:left;vertical-align:top}
+th{background:#e8e8e8}
+.check label{display:block;margin:6px 0}
+.check input{margin-right:8px;transform:scale(1.2)}
+.print{border:2px dashed #888;padding:14px 18px;margin:16px 0;max-width:420px}
+.refs p{padding-left:2em;text-indent:-2em}
+footer{border-top:1px solid #ccc;margin-top:40px;padding:16px 0 30px;color:#666;font-size:14px}
+pre{white-space:pre-wrap;font-family:inherit;margin:0}
+@media(max-width:600px){.photo{float:none;margin:10px auto;width:70%}table{font-size:13px}th,td{padding:5px}}
+@media print{header nav,footer{display:none}}
 </style>
-<script>new MutationObserver(()=>{for(const c of document.querySelectorAll('.stack td:not([data-l])')){let i=0,p=c;while(p=p.previousElementSibling)i+=p.colSpan;c.dataset.l=c.closest('table').rows[0].cells[i]?.textContent||''}}).observe(document,{childList:true,subtree:true})</script>
 </head>
 <body>
-<header class="site-head">
-  <div class="head-in">
-    <a class="brand" href="#home"><span class="mono" aria-hidden="true">CJ</span><span><b>Cadin Jared</b><span>The Inclusive Math Block</span></span></a>
-    <button id="menuBtn" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
-    <nav class="menu" id="menu" aria-label="Main">
-      <a href="#home">Home</a><a href="#audit">The Audit</a><a href="#strategies">Strategies</a><a href="#classroom">From My Classroom</a><a href="#printables">Printables</a><a href="#about">About</a>
-    </nav>
-  </div>
+<div class="container">
+<header>
+  <h1>Cadin Jared</h1>
+  <p>The Inclusive Math Block &middot; 4th Grade Math and Science &middot; Clarksville, TN</p>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#audit">The Audit</a>
+    <a href="#strategies">Strategies</a>
+    <a href="#classroom">My Classroom</a>
+    <a href="#printables">Printables</a>
+    <a href="#about">About Me</a>
+  </nav>
 </header>
 
 <main>
+<!-- HOME -->
 <section class="page" id="home">
-  <div class="band grid-bg">
-    <div class="wrap hero">
-      <div>
-        <span class="pill">A free toolkit for K–5 math teachers</span>
-        <h1>Designing the Math Block So Fewer Students Get Stuck</h1>
-        <p class="byline">By <strong>Cadin Jared</strong>, 4th Grade Math and Science Teacher · Clarksville, Tennessee</p>
-        <p class="lede">Practical Universal Design for Learning (UDL) for real classrooms: a 15 minute lesson audit, research-backed fixes for the barriers I see most, and black and white printables you can use tomorrow.</p>
-        <div class="btns"><a class="btn solid" href="#audit">Start the audit</a><a class="btn" href="#printables">Get the printables</a></div>
-      </div>
-      <figure class="cardfig" aria-label="Drawing of the black and white benchmark desk card"><svg viewBox="0 0 560 420" role="img">
-        <title>Benchmark desk card, front and back</title>
-        <defs>
-          <filter id="sh" x="-10%" y="-10%" width="130%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="9" flood-opacity=".18"/></filter>
-        </defs>
-        <!-- back card -->
-        <g transform="translate(250 40) rotate(6)" filter="url(#sh)">
-          <rect width="290" height="330" rx="16" fill="#fff" stroke="#111" stroke-width="3"/>
-          <text x="24" y="48" font-family="Lexend, Arial, sans-serif" font-weight="700" font-size="22" fill="#111">Measuring Steps</text>
-          <g font-family="Atkinson Hyperlegible, Arial, sans-serif" font-size="17" fill="#111">
-            <rect x="24" y="78" width="22" height="22" rx="4" fill="none" stroke="#111" stroke-width="2.5"/><text x="58" y="96">Did I start at 0?</text>
-            <rect x="24" y="128" width="22" height="22" rx="4" fill="none" stroke="#111" stroke-width="2.5"/><text x="58" y="146">What is each space worth?</text>
-            <rect x="24" y="178" width="22" height="22" rx="4" fill="none" stroke="#111" stroke-width="2.5"/><text x="58" y="196">Which two numbers is it</text><text x="58" y="216">between?</text>
-            <rect x="24" y="246" width="22" height="22" rx="4" fill="none" stroke="#111" stroke-width="2.5"/><text x="58" y="264">Does it match my</text><text x="58" y="284">estimate?</text>
-          </g>
-          <path d="M28 88 l6 7 l11 -14" fill="none" stroke="#f6c12e" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-        </g>
-        <!-- front card -->
-        <g transform="translate(18 70) rotate(-4)" filter="url(#sh)">
-          <rect width="310" height="300" rx="16" fill="#fff" stroke="#111" stroke-width="3"/>
-          <text x="22" y="44" font-family="Lexend, Arial, sans-serif" font-weight="700" font-size="22" fill="#111">My Benchmark Card</text>
-          <text x="22" y="70" font-family="Atkinson Hyperlegible, Arial, sans-serif" font-size="15" fill="#555">Each small space = 0.1 cm</text>
-          <!-- ruler -->
-          <rect x="22" y="88" width="266" height="86" rx="6" fill="#f2f2f2" stroke="#111" stroke-width="2"/>
-          <g id="ticks" stroke="#111" stroke-width="2"></g>
-          <g font-family="Atkinson Hyperlegible, Arial, sans-serif" font-size="13" fill="#111" text-anchor="middle">
-            <text x="32" y="166">3</text><text x="278" y="166">4</text>
-            <text x="155" y="166" font-weight="700">3.5</text>
-          </g>
-          <!-- benchmarks -->
-          <g font-family="Atkinson Hyperlegible, Arial, sans-serif" font-size="15" fill="#111">
-            <circle cx="40" cy="206" r="10" fill="none" stroke="#111" stroke-width="2"/><text x="60" y="211">1 mm · thickness of a dime</text>
-            <rect x="30" y="228" width="20" height="16" rx="3" fill="none" stroke="#111" stroke-width="2"/><text x="60" y="242">1 cm · width of a fingertip</text>
-            <rect x="34" y="258" width="12" height="22" rx="2" fill="#ccc" stroke="#111" stroke-width="2"/><text x="60" y="275">1 m · width of a door</text>
-          </g>
-        </g>
-        <!-- pencil -->
-        <g transform="translate(330 360) rotate(-28)">
-          <rect x="0" y="0" width="190" height="20" rx="3" fill="#f6c12e" stroke="#111" stroke-width="2"/>
-          <rect x="-22" y="0" width="22" height="20" fill="#ccc" stroke="#111" stroke-width="2"/>
-          <path d="M190 0 L222 10 L190 20 Z" fill="#f3e2c0" stroke="#111" stroke-width="2"/>
-          <path d="M214 7.5 L222 10 L214 12.5 Z" fill="#111"/>
-        </g>
-      </svg>
-    </figure>
-    </div>
+  <div class="intro">
+    <div class="photo"><img src="cadin.jpg" alt="Cadin Jared" onerror="this.parentNode.style.display='none'"><p>Cadin Jared</p></div>
+    <h2>Hi, I'm Cadin!</h2>
+    <p>I teach 4th grade math and science in Clarksville, Tennessee. I made this site to share something that changed the way I plan my math lessons, and I hope it helps other teachers too.</p>
+    <p>Every math class I have taught has a wide range of learners. I have students who read above grade level sitting next to students who come to me every day for RTI. Some students need a checklist on their desk to get through the block, and some shut down when a page looks too long. Like a lot of teachers, I teach from district lessons that move fast and expect everyone to keep up with the same page at the same time.</p>
+    <p>Universal Design for Learning (UDL) is a way to plan for all of those students from the start instead of fixing a lesson after it doesn't work. Schools talk about UDL a lot, but in reality most teachers I know have never been shown how to actually use it on the lesson they are teaching tomorrow. That is what this site is for.</p>
   </div>
-  <div class="band">
-    <div class="wrap">
-      <h2>What you will find here</h2>
-      <div class="cards">
-        <a class="feature" href="#audit"><div class="ico"><svg width="28" height="28" viewBox="0 0 28 28"><rect x="4" y="4" width="20" height="20" rx="4" fill="none" stroke="#2a2000" stroke-width="2"/><path d="M9 14l4 4 7-8" fill="none" stroke="#2a2000" stroke-width="2.5" stroke-linecap="round"/></svg></div><h3>The 15 minute audit</h3><p style="margin:0">Five steps and a checklist to find the barriers in any math lesson during one planning period.</p></a>
-        <a class="feature" href="#strategies"><div class="ico"><svg width="28" height="28" viewBox="0 0 28 28"><rect x="2" y="8" width="24" height="12" rx="2" fill="none" stroke="#2a2000" stroke-width="2"/><path d="M7 8v5M12 8v4M17 8v5M22 8v4" stroke="#2a2000" stroke-width="2"/></svg></div><h3>Barrier to strategy guide</h3><p style="margin:0">Common math block barriers matched with UDL checkpoints and strategies from cognitive science.</p></a>
-        <a class="feature" href="#printables"><div class="ico"><svg width="28" height="28" viewBox="0 0 28 28"><rect x="7" y="3" width="14" height="8" fill="none" stroke="#2a2000" stroke-width="2"/><rect x="3" y="11" width="22" height="9" rx="2" fill="none" stroke="#2a2000" stroke-width="2"/><rect x="8" y="17" width="12" height="8" fill="#fff" stroke="#2a2000" stroke-width="2"/></svg></div><h3>Free printables</h3><p style="margin:0">A benchmark desk card and measuring steps checklist, made for black and white printing.</p></a>
-      </div>
-    </div>
-  </div>
-  <div class="band grid-bg">
-    <div class="wrap two">
-      <div>
-        <h2>Why this matters right now</h2>
-        <p>Every math class I have taught holds a wide range of learners. Students who read above grade level sit next to students who come to me every day for RTI. Most of us teach from district lessons that move fast and assume every student can keep up with the same page at the same time.</p>
-        <p>CAST released version 3.0 of the UDL Guidelines in 2024, with more focus on learner agency (CAST, 2024). Schools are talking about UDL more than ever, but in reality most teachers I know have never been shown how to apply it to the lesson they teach tomorrow.</p>
-      </div>
-      <div>
-        <p class="quote">UDL tells me <em>where</em> my lesson creates a barrier. Cognitive science tells me <em>how</em> to fix it.</p>
-        <p>The research on UDL is still being debated. One meta-analysis found significant positive effects (Almeqdad et al., 2023), while Boysen (2024) found that many studies CAST cites give little direct support for its claims. So I use UDL as a lens to find barriers, then match each one to a strategy with strong evidence: scaffolding that fades, managing cognitive load, and retrieval and spaced practice (Dunlosky et al., 2013; Sweller et al., 2019; van de Pol et al., 2010).</p>
-        <p><a href="#classroom">Read how I used this in my own classroom →</a></p>
-      </div>
-    </div>
-  </div>
+
+  <h3>What's on this site</h3>
+  <ul>
+    <li><a href="#audit">The 15 minute audit</a> &ndash; five steps and a checklist to look at any math lesson in one planning period</li>
+    <li><a href="#strategies">Strategies</a> &ndash; common barriers in the math block and what to do about them</li>
+    <li><a href="#classroom">My classroom</a> &ndash; how I used this on my own measurement unit</li>
+    <li><a href="#printables">Printables</a> &ndash; a black and white desk card and checklist you can print</li>
+  </ul>
+
+  <h3>A quick note on the research</h3>
+  <p>CAST updated the UDL Guidelines to version 3.0 in 2024 (CAST, 2024). The research on UDL is still being debated. One meta-analysis found positive effects (Almeqdad et al., 2023), but Boysen (2024) found that a lot of the studies CAST cites don't give much direct support for its claims. So the way I use it is simple. I use UDL to find where my lesson creates a barrier, and then I fix that barrier with a strategy that has strong research behind it, like scaffolding, managing cognitive load, or retrieval practice (Dunlosky et al., 2013; Sweller et al., 2019; van de Pol et al., 2010).</p>
 </section>
 
+<!-- AUDIT -->
 <section class="page" id="audit">
-  <div class="band grid-bg">
-    <div class="wrap">
-      <h1>The 15 minute UDL lesson audit</h1>
-      <p>You do not need a full curriculum review. Pick one lesson you are about to teach and walk through these five steps during a planning period. I built this from the audit I did on my own measurement unit, then simplified it so a grade level team can do it together.</p>
-      <ol class="steps">
-        <li><div><h3>Pick one lesson and its target</h3><p>Write the "I can" statement at the top of your page. Everything you change has to keep this target the same for every student.</p></div></li>
-        <li><div><h3>Walk through it as three different students</h3><p>Picture a student who struggles to read or is learning English, a student who has trouble holding steps in memory or staying focused, and a student who struggles with writing or fine motor tasks. Go through the I Do, We Do, and You Do as each of them.</p></div></li>
-        <li><div><h3>Sort what you notice</h3><p>Put each note in one of three columns: strengths (what already works), barriers (what makes it harder for some students), and missing opportunities (what could be there but is not).</p></div></li>
-        <li><div><h3>Match each barrier to a checkpoint and a strategy</h3><p>Use the checklist below to name the UDL checkpoint, then use the <a href="#strategies">strategy guide</a> to pick one evidence-based fix.</p></div></li>
-        <li><div><h3>Make one change and plan when to take it away</h3><p>Choose the one barrier that affects the most students. Plan the support, and plan the day you will start fading it so students end up doing it on their own.</p></div></li>
-      </ol>
-    </div>
-  </div>
-  <div class="band" id="checklist">
-    <div class="wrap">
-      <h2>Audit checklist</h2>
-      <p>Check each question your lesson already does. Anything left unchecked is a place to look for a missing opportunity. The numbers are the matching checkpoints in the CAST (2024) UDL Guidelines.</p>
-      <div class="score"><span class="big" id="scoreNum">0 of 12</span><div class="meter" aria-hidden="true"><i id="scoreBar"></i></div><button id="resetCheck" type="button">Clear checklist</button></div>
-      <div class="cards" id="checkCards"></div>
-      <p class="small noprint" style="margin-top:14px">Your checks are saved in this browser only.</p>
-    </div>
+  <h2>The 15 Minute Lesson Audit</h2>
+  <p>You don't need to review your whole curriculum. Pick one lesson you are about to teach and go through these steps during a planning period. I came up with these after auditing my own measurement lessons for my master's program, and I kept them simple enough that a grade level team could do it together.</p>
+  <ol>
+    <li><strong>Pick one lesson and write down the target.</strong> Whatever you change, the "I can" statement stays the same for every student.</li>
+    <li><strong>Go through the lesson as three different students.</strong> Picture a student who struggles to read or is learning English, a student who has a hard time remembering steps or staying focused, and a student who struggles with writing. Walk through your I Do, We Do, and You Do as each of them.</li>
+    <li><strong>Sort what you notice.</strong> Make three columns: strengths (what already works), barriers (what makes it harder for some students), and missing opportunities (what could be there but isn't).</li>
+    <li><strong>Match each barrier to a strategy.</strong> Use the checklist below to name the UDL checkpoint, then look at the <a href="#strategies">strategies page</a> for a fix.</li>
+    <li><strong>Make one change and plan when to take it away.</strong> Pick the barrier that affects the most students. Plan the support and plan the day you will start fading it.</li>
+  </ol>
+
+  <h3>Audit Checklist</h3>
+  <p>Check off what your lesson already does. Anything you leave unchecked is a place to look. The numbers match the checkpoints in the CAST (2024) guidelines.</p>
+  <div class="box check" id="checklist">
+    <p><strong>Engagement</strong></p>
+    <label><input type="checkbox"> Students get at least one real choice (task, tool, or way to work). (7.1)</label>
+    <label><input type="checkbox"> The lesson connects to something students care about or see in real life. (7.2)</label>
+    <label><input type="checkbox"> Students know why the target matters, in kid language. (8.1)</label>
+    <label><input type="checkbox"> Practice has more than one level, so everyone is challenged but supported. (8.2)</label>
+    <p><strong>Representation</strong></p>
+    <label><input type="checkbox"> Important steps stay visible after the slide changes. (1.1, 3.4)</label>
+    <label><input type="checkbox"> New vocabulary is taught in small chunks with pictures or real objects. (2.1)</label>
+    <label><input type="checkbox"> Word problems can be read aloud or have visual support. (2.2)</label>
+    <label><input type="checkbox"> The lesson connects to skills students already know. (3.1)</label>
+    <p><strong>Action &amp; Expression</strong></p>
+    <label><input type="checkbox"> Students can show what they know in more than one way. (5.1)</label>
+    <label><input type="checkbox"> Support is given step by step and planned to fade. (5.3)</label>
+    <label><input type="checkbox"> Students have a checklist to check their own work. (6.2)</label>
+    <label><input type="checkbox"> Students rate or track their own progress on the target. (6.4)</label>
+    <p id="count" style="margin-bottom:0"><strong>Checked: 0 of 12</strong></p>
   </div>
 </section>
 
+<!-- STRATEGIES -->
 <section class="page" id="strategies">
-  <div class="band grid-bg">
-    <div class="wrap" id="guide">
-      <h1>Barrier to strategy guide</h1>
-      <p>These are the barriers I see most often in the elementary math block. Each one is paired with a UDL checkpoint, an evidence-based strategy, and what it actually looks like in a classroom.</p>
-      <div class="filters" role="group" aria-label="Filter by UDL principle">
-        <button type="button" data-f="all" aria-pressed="true">All</button>
-        <button type="button" data-f="Engagement" aria-pressed="false">Engagement</button>
-        <button type="button" data-f="Representation" aria-pressed="false">Representation</button>
-        <button type="button" data-f="Action &amp; Expression" aria-pressed="false">Action &amp; Expression</button>
-      </div>
-      <table class="stack"><thead><tr><th>Barrier</th><th>UDL checkpoint</th><th>Strategy</th><th>What it looks like</th></tr></thead><tbody id="guideBody"></tbody></table>
-    </div>
-  </div>
+  <h2>Barriers and What to Do About Them</h2>
+  <p>These are the barriers I see the most in the elementary math block. For each one I listed the UDL checkpoint it connects to, a strategy that has research behind it, and what it actually looks like in my classroom.</p>
+  <table>
+    <tr><th>Barrier</th><th>Checkpoint</th><th>Strategy</th><th>What it looks like</th></tr>
+    <tr><td>The steps disappear once the slide changes</td><td>1.1, 3.4</td><td>Scaffolding that fades</td><td>A desk card with the steps. We use it together on day one, with partners on day two, on their own on day three, and it goes away for the test (van de Pol et al., 2010).</td></tr>
+    <tr><td>Too many new words or steps at once</td><td>2.1</td><td>Managing cognitive load</td><td>Pre-teach the vocabulary the day before in small chunks with pictures. Show one worked example before students try it (Sweller et al., 2019).</td></tr>
+    <tr><td>Word problems turn into a reading test</td><td>2.2</td><td>Managing cognitive load</td><td>Read the problem aloud, add pictures for the units, and have students say what each number means before they solve.</td></tr>
+    <tr><td>Students forget old skills by test day</td><td>3.1</td><td>Retrieval and spaced practice</td><td>A three question warm-up that mixes yesterday, last week, and last month. No notes and low stakes (Dunlosky et al., 2013).</td></tr>
+    <tr><td>Everyone gets the same page at the same level</td><td>8.2</td><td>Tiered practice</td><td>Three versions of the practice page with the same target. Students pick one with my help and can move up.</td></tr>
+    <tr><td>Students don't know why the lesson matters</td><td>8.1, 9.3</td><td>Clear goals and self-rating</td><td>Students rate themselves 1 to 4 on the target after the I Do and at closure, then finish "Next time I will..."</td></tr>
+    <tr><td>Only one way to show mastery</td><td>5.1</td><td>More than one way to respond</td><td>Students can write it, draw and label it, or explain it to me while I write it down. I grade the math, not the handwriting.</td></tr>
+    <tr><td>Students wait for me to tell them if they're right</td><td>6.2, 6.4</td><td>Self-checking checklist</td><td>A short checklist students use before turning in work, like "Does it match my estimate?"</td></tr>
+  </table>
 </section>
 
+<!-- CLASSROOM -->
 <section class="page" id="classroom">
-  <div class="band">
-    <article class="wrap post">
-      <h1>What I learned auditing my own measurement unit</h1>
-      <p class="post-meta">By Cadin Jared · December 2026 · 4th grade math</p>
-      <p>I first tried this with the opening lessons of our district measurement module: metric length, customary length, and liquid volume (4.MD.A.1 and 4.MD.A.2). I teach these lessons to two classes of about 50 students total.</p>
-      <p>The lessons were already strong in engagement. Every lesson opens with a hook where students estimate before they measure, and the cooperative structures get everyone talking. The connections to tenths and fractions are excellent.</p>
-      <h2>The barrier I had never noticed</h2>
-      <p>Every lesson depends on one habit: figure out what each space on the tool is worth. During the I Do, that step is right there on the slide. Once the slide changes, it is gone. My students who struggle were trying to remember the steps, read tiny tick marks, and write a decimal all at the same time. That is a lot to hold in your head at once.</p>
-      <h2>What I changed</h2>
-      <p><strong>A desk card with fading support.</strong> Every student gets the black and white benchmark card from the <a href="#printables">printables page</a>. On day one we use it together on every problem. By day two partners use it. By day three students try first and only flip the card over when they get stuck. The card goes away for the test. This is scaffolding that fades, which is what the research says makes support work long term (van de Pol et al., 2010).</p>
-      <p><strong>Vocabulary in smaller chunks.</strong> The liquid volume lesson introduces ten new words in one day, so I pre-teach them the day before in two groups with picture cards. Less new information at once means more room to actually think about the math (Sweller et al., 2019).</p>
-      <p><strong>More than one way to show it.</strong> Students can show a measurement by writing it, drawing and labeling the ruler, or explaining it to me while I record. The target stays the same.</p>
-      <p><strong>Quick self-rating.</strong> Students rate themselves 1 to 4 on the target after the I Do and again at closure, which also tells me who to pull for small group the next day.</p>
-      <h2>What I would tell another teacher</h2>
-      <p>None of these changes needed new materials beyond copy paper. Start with one lesson, find the one barrier that affects the most students, and plan when you will take the support away. If your team audits the first lessons of each module together, you only have to build supports like the benchmark card once.</p>
-    </article>
-  </div>
+  <h2>What I Learned Auditing My Own Measurement Unit</h2>
+  <p><em>December 2026</em></p>
+  <p>I first tried this on the first three lessons of our district measurement module: metric length, customary length, and liquid volume (4.MD.A.1 and 4.MD.A.2). I teach these lessons to my homeroom and my second block, so that's about 50 students.</p>
+  <p>Honestly, the lessons were already strong in a lot of ways. Every lesson starts with a hook where students estimate before they measure, and the Kagan structures get everyone talking. The connections to tenths and fractions are really good.</p>
+  <h3>The barrier I never noticed</h3>
+  <p>Every one of these lessons depends on one habit: figuring out what each space on the tool is worth. During the I Do, that step is right there on the slide. Once the slide changes, it's gone. My students who struggle were trying to remember the steps, read tiny tick marks, and write a decimal all at the same time. That is a lot to hold in your head.</p>
+  <h3>What I changed</h3>
+  <p><strong>A desk card.</strong> Every student gets a black and white benchmark card (it's on the <a href="#printables">printables page</a>). On day one we use it together on every problem. On day two they use it with a partner. By day three they try it on their own first and only flip the card over if they get stuck. The card goes away for the test.</p>
+  <p><strong>Smaller chunks of vocabulary.</strong> The liquid volume lesson has ten new words in one day, so I pre-teach them the day before in two groups with picture cards.</p>
+  <p><strong>More than one way to show it.</strong> Students can write the measurement, draw and label the ruler, or explain it to me while I write it down. The target stays the same.</p>
+  <p><strong>A quick self-rating.</strong> Students rate themselves 1 to 4 on the target after the I Do and again at closure. It also tells me who to pull for small group the next day.</p>
+  <h3>What I would tell another teacher</h3>
+  <p>None of this needed new materials, just copy paper. Start with one lesson, find the barrier that affects the most kids, and plan when you will take the support away. If your team does the first lessons of each module together, you only have to make things like the desk card one time.</p>
 </section>
 
+<!-- PRINTABLES -->
 <section class="page" id="printables">
-  <div class="band grid-bg">
-    <div class="wrap">
-      <h1>Free printables</h1>
-      <p>Both are designed for black and white printing. Print this page from your browser, or copy the text into your own template. Print the card front and back, fold, and tape it to the desk. No laminating needed.</p>
-      <div class="print">
-      <div class="sheet">
-        <h3>My Benchmark Card (front)</h3>
-        <p style="color:#444;margin-bottom:8px">Each small space on a centimeter ruler = 0.1 cm</p>
-        <svg viewBox="0 0 300 70" style="width:100%;height:auto" aria-label="Enlarged ruler from 3 to 4 centimeters with every tenth marked">
-          <rect x="4" y="4" width="292" height="62" rx="6" fill="#f2f2f2" stroke="#111" stroke-width="2"/>
-          <g id="ticks2" stroke="#111" stroke-width="2"></g>
-          <g font-size="11" text-anchor="middle" fill="#111"><text x="14" y="60">3</text><text x="150" y="60" font-weight="700">3.5</text><text x="286" y="60">4</text></g>
-        </svg>
-        <ol style="list-style:none;padding:0;margin-top:12px">
-          <li><strong>1 mm</strong> · thickness of a dime</li>
-          <li><strong>1 cm</strong> · width of a fingertip</li>
-          <li><strong>1 m</strong> · width of a door</li>
-          <li><strong>1 inch</strong> · thumb knuckle</li>
-          <li><strong>1 foot</strong> · length of a shoe</li>
-          <li><strong>1 yard</strong> · arm span</li>
-          <li><strong>My own benchmark:</strong> ______________</li>
-        </ol>
-      </div>
-      <div class="sheet">
-        <h3>Measuring Steps (back)</h3>
-        <ol>
-          <li>☐ Did I start at 0? (If not, subtract the start.)</li>
-          <li>☐ What is each space worth?</li>
-          <li>☐ Which two numbers is it between?</li>
-          <li>☐ Which number is it closer to?</li>
-          <li>☐ Does it match my estimate?</li>
-          <li>☐ Did I write the unit?</li>
-        </ol>
-        <p style="color:#444;margin:14px 0 0;font-size:15px">Works for rulers, graduated cylinders, measuring cups, and scales.</p>
-      </div>
-    </div>
+  <h2>Printables</h2>
+  <p>These are made for black and white printing. Print this page, cut along the dashed lines, and fold the card in half so the steps are on the back. No laminating needed.</p>
+
+  <div class="print">
+    <h3 style="margin-top:0">My Benchmark Card</h3>
+    <p style="margin:0 0 6px">Each small space on a centimeter ruler = 0.1 cm</p>
+    <table style="table-layout:fixed;text-align:center;margin:6px 0 10px">
+      <tr><td>3</td><td>3.1</td><td>3.2</td><td>3.3</td><td>3.4</td><td><strong>3.5</strong></td><td>3.6</td><td>3.7</td><td>3.8</td><td>3.9</td><td>4</td></tr>
+    </table>
+    <p style="margin:0">1 mm = thickness of a dime<br>1 cm = width of a fingertip<br>1 m = width of a door<br>1 inch = thumb knuckle<br>1 foot = length of a shoe<br>1 yard = arm span<br>My own benchmark: ____________</p>
   </div>
-  <div class="band" id="plans">
-    <div class="wrap two">
-      <div>
-        <h2>Add a UDL check to your weekly plans</h2>
-        <p>Most grade level teams already plan row by row: standard, target, I Do, We Do, You Do, and materials. Adding one more row makes the audit part of planning instead of something extra.</p>
-        <p>That moves a team from fixing problems for one student at a time to planning lessons where fewer students run into the problem at all.</p>
-      </div>
-      <div>
-        <pre id="planRow">UDL Check
+
+  <div class="print">
+    <h3 style="margin-top:0">Measuring Steps</h3>
+    <p style="margin:0">&#9744; Did I start at 0? (If not, subtract the start.)<br>&#9744; What is each space worth?<br>&#9744; Which two numbers is it between?<br>&#9744; Which number is it closer to?<br>&#9744; Does it match my estimate?<br>&#9744; Did I write the unit?</p>
+  </div>
+
+  <h3>A "UDL Check" Row for Your Lesson Plans</h3>
+  <p>My grade level team plans row by row: standard, target, I Do, We Do, You Do, and materials. Adding this one row makes the audit part of planning instead of one more thing to do. Copy it into your own plan template.</p>
+  <div class="box"><pre>UDL Check
 Target (same for everyone):
 Barrier I expect:
 Who it affects:
 UDL checkpoint:
-Strategy (scaffold / chunk / retrieval / spaced practice):
+Strategy (scaffold, chunk, retrieval, or spaced practice):
 What it looks like in the lesson:
-Day I start fading the support:</pre>
-        <button class="primary" id="copyRow" type="button">Copy the UDL check row</button>
-        <span id="copyMsg" class="small" role="status" style="margin-left:10px"></span>
-      </div>
-    </div>
-  </div>
+Day I start fading the support:</pre></div>
 </section>
 
+<!-- ABOUT -->
 <section class="page" id="about">
-  <div class="band">
-    <div class="wrap two">
-      <div>
-        <h1>About me</h1>
-        <div class="author" style="margin-bottom:18px"><div class="mono" aria-hidden="true">CJ</div><div><strong>Cadin Jared</strong><br><span class="small">4th Grade Math and Science Teacher · Clarksville, Tennessee</span></div></div>
-        <p>I teach 4th grade math and science in Clarksville, Tennessee. I hold a B.S. in General Studies with a concentration in K–5 Education from Austin Peay State University, and I completed my M.Ed. in Curriculum and Instruction at American College of Education in December 2026.</p>
-        <p>I created this site as my original contribution for my master's program. It grew out of a UDL audit of my own math lessons, and I wanted to turn what I learned into something other teachers could actually use. Teachers are welcome to use and share the printables in their own classrooms.</p>
-      </div>
-      <div class="refs" id="references">
-        <h2>References</h2>
-        <p>Almeqdad, Q. I., Alodat, A. M., Alquraan, M. F., Mohaidat, M. A., &amp; Al-Makhzoomy, A. K. (2023). The effectiveness of universal design for learning: A systematic review of the literature and meta-analysis. <em>Cogent Education, 10</em>(1), Article 2218191. <a href="https://doi.org/10.1080/2331186X.2023.2218191">https://doi.org/10.1080/2331186X.2023.2218191</a></p>
-    <p>Boysen, G. A. (2024). A critical analysis of the research evidence behind CAST's universal design for learning guidelines. <em>Policy Futures in Education, 22</em>(7), 1219–1238. <a href="https://doi.org/10.1177/14782103241255428">https://doi.org/10.1177/14782103241255428</a></p>
-    <p>Capp, M. J. (2017). The effectiveness of universal design for learning: A meta-analysis of literature between 2013 and 2016. <em>International Journal of Inclusive Education, 21</em>(8), 791–807. <a href="https://doi.org/10.1080/13603116.2017.1325074">https://doi.org/10.1080/13603116.2017.1325074</a></p>
+  <div class="intro">
+    <div class="photo"><img src="cadin.jpg" alt="Cadin Jared" onerror="this.parentNode.style.display='none'"><p>Cadin Jared</p></div>
+    <h2>About Me</h2>
+    <p>I'm Cadin Jared, and I teach 4th grade math and science in Clarksville, Tennessee. I got my B.S. in General Studies with a concentration in K&ndash;5 Education from Austin Peay State University, and I finished my M.Ed. in Curriculum and Instruction at American College of Education in December 2026.</p>
+    <p>I made this site as my original contribution for my master's program. It started as a UDL audit of my own math lessons, and I wanted to turn what I learned into something other teachers could actually use. Feel free to use and share the printables in your own classroom.</p>
+  </div>
+
+  <div class="refs" id="references">
+    <h3>References</h3>
+    <p>Almeqdad, Q. I., Alodat, A. M., Alquraan, M. F., Mohaidat, M. A., &amp; Al-Makhzoomy, A. K. (2023). The effectiveness of universal design for learning: A systematic review of the literature and meta-analysis. <em>Cogent Education, 10</em>(1), Article 2218191. <a href="https://doi.org/10.1080/2331186X.2023.2218191">https://doi.org/10.1080/2331186X.2023.2218191</a></p>
+    <p>Boysen, G. A. (2024). A critical analysis of the research evidence behind CAST's universal design for learning guidelines. <em>Policy Futures in Education, 22</em>(7), 1219&ndash;1238. <a href="https://doi.org/10.1177/14782103241255428">https://doi.org/10.1177/14782103241255428</a></p>
     <p>CAST. (2024). <em>Universal Design for Learning guidelines version 3.0</em>. <a href="https://udlguidelines.cast.org">https://udlguidelines.cast.org</a></p>
-    <p>Dunlosky, J., Rawson, K. A., Marsh, E. J., Nathan, M. J., &amp; Willingham, D. T. (2013). Improving students' learning with effective learning techniques: Promising directions from cognitive and educational psychology. <em>Psychological Science in the Public Interest, 14</em>(1), 4–58. <a href="https://doi.org/10.1177/1529100612453266">https://doi.org/10.1177/1529100612453266</a></p>
-    <p>Sweller, J., van Merriënboer, J. J. G., &amp; Paas, F. (2019). Cognitive architecture and instructional design: 20 years later. <em>Educational Psychology Review, 31</em>(2), 261–292. <a href="https://doi.org/10.1007/s10648-019-09465-5">https://doi.org/10.1007/s10648-019-09465-5</a></p>
-    <p>van de Pol, J., Volman, M., &amp; Beishuizen, J. (2010). Scaffolding in teacher–student interaction: A decade of research. <em>Educational Psychology Review, 22</em>(3), 271–296. <a href="https://doi.org/10.1007/s10648-010-9127-6">https://doi.org/10.1007/s10648-010-9127-6</a></p>
-</div>
-    </div>
+    <p>Dunlosky, J., Rawson, K. A., Marsh, E. J., Nathan, M. J., &amp; Willingham, D. T. (2013). Improving students' learning with effective learning techniques: Promising directions from cognitive and educational psychology. <em>Psychological Science in the Public Interest, 14</em>(1), 4&ndash;58. <a href="https://doi.org/10.1177/1529100612453266">https://doi.org/10.1177/1529100612453266</a></p>
+    <p>Sweller, J., van Merri&euml;nboer, J. J. G., &amp; Paas, F. (2019). Cognitive architecture and instructional design: 20 years later. <em>Educational Psychology Review, 31</em>(2), 261&ndash;292. <a href="https://doi.org/10.1007/s10648-019-09465-5">https://doi.org/10.1007/s10648-019-09465-5</a></p>
+    <p>van de Pol, J., Volman, M., &amp; Beishuizen, J. (2010). Scaffolding in teacher&ndash;student interaction: A decade of research. <em>Educational Psychology Review, 22</em>(3), 271&ndash;296. <a href="https://doi.org/10.1007/s10648-010-9127-6">https://doi.org/10.1007/s10648-010-9127-6</a></p>
   </div>
 </section>
 </main>
 
-<footer class="site-foot">
-  <div class="foot-in">
-    <span>© 2026 Cadin Jared · Clarksville, Tennessee</span>
-    <span><a href="#about">About</a> · <a href="#references">References</a></span>
-  </div>
-</footer>
+<footer>&copy; 2026 Cadin Jared &middot; Clarksville, Tennessee</footer>
+</div>
 
 <script>
-{
-  // ruler ticks for both rulers
-  const drawTicks = (id, x0, x1, top, h) => {
-    const g = document.getElementById(id); if (!g) return;
-    let s = '';
-    for (let i = 0; i <= 10; i++) {
-      const x = x0 + (x1 - x0) * i / 10;
-      const len = (i === 0 || i === 10) ? h : (i === 5 ? h * .72 : h * .45);
-      s += `<line x1="${x}" y1="${top}" x2="${x}" y2="${top + len}"/>`;
-    }
-    g.innerHTML = s;
-  };
-  drawTicks('ticks', 32, 278, 88, 52);
-  drawTicks('ticks2', 14, 286, 4, 40);
-
-  // checklist
-  const groups = [
-    { name: 'Engagement', items: [
-      ['Students can make at least one real choice (task version, tool, object, or way to work).', '7.1'],
-      ['The lesson connects to something students care about or see in real life.', '7.2'],
-      ['Students know why the target matters, in kid language.', '8.1'],
-      ['The practice has more than one level, so everyone is challenged but supported.', '8.2'],
-    ]},
-    { name: 'Representation', items: [
-      ['Key information stays visible after the slide changes (anchor chart, desk card).', '1.1 / 3.4'],
-      ['New vocabulary is chunked and shown with pictures or real objects.', '2.1'],
-      ['Word problems can be read aloud or have visual support.', '2.2'],
-      ['The lesson connects new learning to skills students already have.', '3.1'],
-    ]},
-    { name: 'Action & Expression', items: [
-      ['Students can show mastery in more than one way (write, draw, explain).', '5.1'],
-      ['Support is given step by step and planned to fade.', '5.3'],
-      ['Students have a checklist or steps to plan and check their own work.', '6.2'],
-      ['Students track or rate their own progress on the target.', '6.4'],
-    ]},
-  ];
-  const total = groups.reduce((n, g) => n + g.items.length, 0);
-  let saved = {};
-  try { saved = JSON.parse(localStorage.getItem('udlCheck') || '{}'); } catch (e) { saved = {}; }
-  const cards = document.getElementById('checkCards');
-  cards.innerHTML = groups.map((g, gi) => `<div class="check"><h3>${g.name}</h3>${g.items.map((it, ii) => {
-    const id = `c${gi}-${ii}`;
-    return `<label for="${id}"><input type="checkbox" id="${id}" ${saved[id] ? 'checked' : ''}><span>${it[0]}</span><span class="cp">${it[1]}</span></label>`;
-  }).join('')}</div>`).join('');
-  const scoreNum = document.getElementById('scoreNum'), scoreBar = document.getElementById('scoreBar');
-  const update = () => {
-    const boxes = cards.querySelectorAll('input');
-    let n = 0; const st = {};
-    boxes.forEach(b => { if (b.checked) { n++; st[b.id] = 1; } });
-    scoreNum.textContent = `${n} of ${total}`;
-    scoreBar.style.width = (n / total * 100) + '%';
-    try { localStorage.setItem('udlCheck', JSON.stringify(st)); } catch (e) {}
-  };
-  cards.addEventListener('change', update);
-  document.getElementById('resetCheck').addEventListener('click', () => { cards.querySelectorAll('input').forEach(b => b.checked = false); update(); });
-  update();
-
-  // guide table
-  const guide = [
-    ['Steps disappear once the slide changes', 'Representation', '1.1, 3.4', 'Scaffolding that fades', 'A desk card with the steps. Use it together on day one, with partners on day two, on your own on day three, and take it away for the test (van de Pol et al., 2010).'],
-    ['Too many new words or steps at once', 'Representation', '2.1', 'Managing cognitive load', 'Pre-teach vocabulary the day before in small chunks with pictures. Show one worked example before students try on their own (Sweller et al., 2019).'],
-    ['Word problems are really a reading test', 'Representation', '2.2', 'Managing cognitive load', 'Read the problem aloud, add unit icons, and have students name what each number means before they solve.'],
-    ['Students forget earlier skills by test day', 'Representation', '3.1', 'Retrieval and spaced practice', 'A three question warm-up that mixes yesterday, last week, and last month. No notes, quick feedback, low stakes (Dunlosky et al., 2013).'],
-    ['Everyone gets the same page at the same level', 'Engagement', '8.2', 'Scaffolding (tiered practice)', 'Three versions of the practice page with the same target. Students pick with teacher guidance and can move up during the lesson.'],
-    ['Students do not know why the lesson matters', 'Engagement', '8.1, 9.3', 'Clear goals and self-rating', 'Students rate themselves 1 to 4 on the target after the I Do and again at closure, then finish "Next time I will..."'],
-    ['Only one way to show mastery', 'Action & Expression', '5.1', 'Multiple modes, same target', 'Let students write it, draw and label it, or explain it while the teacher records. Score the math, not the handwriting.'],
-    ['Students wait for the teacher to tell them if they are right', 'Action & Expression', '6.2, 6.4', 'Self-checking checklist', 'A short checklist students use before turning work in, like "Does it match my estimate?"'],
-  ];
-  const esc = s => String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-  const body = document.getElementById('guideBody');
-  const renderGuide = f => {
-    body.innerHTML = guide.filter(r => f === 'all' || r[1] === f).map(r =>
-      `<tr><td>${esc(r[0])}</td><td><span class="tag">${esc(r[1])}</span> ${esc(r[2])}</td><td>${esc(r[3])}</td><td>${esc(r[4])}</td></tr>`).join('');
-  };
-  document.querySelectorAll('.filters button').forEach(b => b.addEventListener('click', () => {
-    document.querySelectorAll('.filters button').forEach(x => x.setAttribute('aria-pressed', String(x === b)));
-    renderGuide(b.dataset.f);
-  }));
-  renderGuide('all');
-
-  // copy row
-  const msg = document.getElementById('copyMsg');
-  document.getElementById('copyRow').addEventListener('click', async () => {
-    try { await navigator.clipboard.writeText(document.getElementById('planRow').textContent); msg.textContent = 'Copied.'; }
-    catch (e) { msg.textContent = 'Select the text above and copy it.'; }
-  });
+var pages = ['home','audit','strategies','classroom','printables','about'];
+function showPage() {
+  var id = location.hash.replace('#','') || 'home';
+  if (id === 'checklist') id = 'audit';
+  if (id === 'references') id = 'about';
+  if (pages.indexOf(id) < 0) id = 'home';
+  for (var i = 0; i < pages.length; i++) {
+    document.getElementById(pages[i]).className = (pages[i] === id) ? 'page on' : 'page';
+  }
+  var links = document.querySelectorAll('nav a');
+  for (var j = 0; j < links.length; j++) {
+    links[j].className = (links[j].getAttribute('href') === '#' + id) ? 'current' : '';
+  }
+  window.scrollTo(0, 0);
 }
+window.addEventListener('hashchange', showPage);
+showPage();
 
-</script>
-<script>
-{
-  const pages=['home','audit','strategies','classroom','printables','about'];
-  const anchors={checklist:'audit',guide:'strategies',plans:'printables',references:'about'};
-  const menu=document.getElementById('menu'),btn=document.getElementById('menuBtn');
-  const show=()=>{
-    const h=(location.hash||'#home').slice(1);
-    const page=pages.includes(h)?h:(anchors[h]||'home');
-    document.querySelectorAll('.page').forEach(p=>p.classList.toggle('on',p.id===page));
-    menu.querySelectorAll('a').forEach(a=>a.toggleAttribute('aria-current',a.getAttribute('href')==='#'+page)||a.setAttribute('aria-current','page'));
-    menu.querySelectorAll('a').forEach(a=>{if(a.getAttribute('href')==='#'+page)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
-    menu.classList.remove('open');btn.setAttribute('aria-expanded','false');
-    if(pages.includes(h)||!h)window.scrollTo(0,0);else document.getElementById(h)?.scrollIntoView();
-    document.title=(page==='home'?'':menu.querySelector('a[href="#'+page+'"]').textContent+' | ')+'Cadin Jared | The Inclusive Math Block';
-  };
-  btn.addEventListener('click',()=>{const o=menu.classList.toggle('open');btn.setAttribute('aria-expanded',String(o));});
-  window.addEventListener('hashchange',show);show();
+var boxes = document.querySelectorAll('#checklist input');
+function countChecks() {
+  var n = 0;
+  for (var k = 0; k < boxes.length; k++) { if (boxes[k].checked) n++; }
+  document.getElementById('count').innerHTML = '<strong>Checked: ' + n + ' of 12</strong>';
 }
+for (var k = 0; k < boxes.length; k++) { boxes[k].addEventListener('change', countChecks); }
 </script>
 </body>
 </html>
